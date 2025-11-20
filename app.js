@@ -319,3 +319,63 @@ function init(){
 }
 
 init();
+
+
+
+
+function seedLocalStorageIfEmpty() {
+  const key = 'recipes';
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) {
+      const starter = [ /* put your candidate recipe object here */ ];
+      localStorage.setItem(key, JSON.stringify(starter));
+      return starter;
+    }
+    // try parse to ensure it's valid JSON
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) throw new Error('invalid format');
+    return parsed;
+  } catch (err) {
+    // handle corrupted data gracefully
+    console.warn('Corrupted recipes in localStorage — resetting.', err);
+    const starter = [ /* starter recipe */ ];
+    localStorage.setItem(key, JSON.stringify(starter));
+    return starter;
+  }
+}
+
+
+function validateRecipe(obj) {
+  const errors = [];
+  if (!obj.title || !obj.title.trim()) errors.push('Title is required.');
+  if (!Array.isArray(obj.ingredients) || obj.ingredients.length === 0) errors.push('At least 1 ingredient.');
+  if (!Array.isArray(obj.steps) || obj.steps.length === 0) errors.push('At least 1 step.');
+  if (!['Easy','Medium','Hard'].includes(obj.difficulty)) errors.push('Difficulty must be Easy, Medium or Hard.');
+  if (!Number.isFinite(obj.prepTimeMin) || obj.prepTimeMin < 0) errors.push('Prep time must be a non-negative number.');
+  return errors; // empty array = valid
+}
+
+const KEY = 'recipes';
+function getRecipes() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+  catch (e) { localStorage.removeItem(KEY); return []; }
+}
+function saveRecipes(list) {
+  localStorage.setItem(KEY, JSON.stringify(list));
+}
+function addRecipe(recipe) {
+  const list = getRecipes();
+  list.unshift(recipe);
+  saveRecipes(list);
+}
+function updateRecipe(id, updates) {
+  const list = getRecipes();
+  const idx = list.findIndex(r => r.id === id);
+  if (idx === -1) throw new Error('Not found');
+  list[idx] = {...list[idx], ...updates};
+  saveRecipes(list);
+}
+function deleteRecipe(id) {
+  saveRecipes(getRecipes().filter(r=>r.id !== id));
+}

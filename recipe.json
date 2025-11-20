@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1732178400000",
+    "title": "Pav Bhaji",
+    "description": "A spicy street-style pav bhaji.",
+    "difficulty": "Medium",
+    "prepTime": 15,
+    "cookTime": 20,
+    "image": "",
+    "ingredients": [
+      "4 potatoes",
+      "1 cup peas",
+      "2 tomatoes",
+      "Pav bhaji masala"
+    ],
+    "steps": [
+      "Boil vegetables",
+      "Mash them",
+      "Cook with masala and butter",
+      "Serve with pav"
+    ]
+  }
+]
