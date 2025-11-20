@@ -39,17 +39,49 @@ let recipes = [];
 let currentViewId = null;
 
 // Starter recipe (replace with your own)
-const starterRecipe = {
+const starterRecipe = { 
   id: String(Date.now()),
-  title: "Vinayak's Masala Omelette",
-  description: "A quick spicy omelette with onions, chillies and masala.",
+  title: "Pav Bhaji",
+  description: "A spicy, buttery Mumbai street-style mixed vegetable curry served with toasted pav.",
   image: "",
-  ingredients: ["2 eggs","1 small onion, chopped","1 green chilli, chopped","Pinch turmeric","Salt to taste","1 tbsp oil"],
-  steps: ["Beat eggs with turmeric and salt","Heat oil in a pan","Sauté onion and chilli 1-2 min","Pour egg mix, cook both sides","Serve hot"],
-  prepTime: 10,
-  difficulty: "Easy",
+  ingredients: [
+    "2 medium potatoes (boiled)",
+    "1 cup cauliflower (boiled)",
+    "1/2 cup green peas (boiled)",
+    "1 capsicum, finely chopped",
+    "2 medium onions, finely chopped",
+    "3 tomatoes, finely chopped",
+    "1 tbsp ginger-garlic paste",
+    "2-3 green chillies, chopped",
+    "2 tbsp pav bhaji masala",
+    "1 tsp red chilli powder",
+    "1/2 tsp turmeric",
+    "Salt to taste",
+    "2 tbsp butter",
+    "1 tbsp oil",
+    "Pav (4 pieces)",
+    "Extra butter for toasting pav"
+  ],
+  steps: [
+    "Step 1: Switch on the gas and place a deep pan/kadhai on medium flame. Add 1 tbsp oil and 1 tbsp butter.",
+    "Step 2: Add chopped onions and sauté until they turn light golden.",
+    "Step 3: Add ginger-garlic paste and green chillies. Cook for 1 minute until raw smell goes away.",
+    "Step 4: Add chopped capsicum and sauté for 2–3 minutes.",
+    "Step 5: Add chopped tomatoes and cook until soft and mushy.",
+    "Step 6: Add turmeric, red chilli powder, pav bhaji masala, and salt. Mix well and cook the masala for 2 minutes.",
+    "Step 7: Add boiled potatoes, cauliflower, and peas. Mash the vegetables using a masher.",
+    "Step 8: Add 1/2 to 1 cup water to adjust consistency. Mash and mix continuously for 5–7 minutes on medium flame.",
+    "Step 9: Add 1 tbsp butter on top and let it simmer for another 2 minutes on low flame.",
+    "Step 10: Turn off the gas — bhaji is ready.",
+    "Step 11: For pav, switch on the gas and heat a tawa. Add some butter on the tawa.",
+    "Step 12: Place pav on the tawa and toast both sides until golden and crispy.",
+    "Step 13: Serve hot bhaji with butter-toasted pav, onions, and lemon."
+  ],
+  prepTime: 30,
+  difficulty: "Medium",
   createdAt: new Date().toISOString()
 };
+
 
 // Utilities
 function loadRecipesFromStorage() {
