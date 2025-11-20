@@ -73,11 +73,13 @@ const starterMaggi = {
 function loadRecipesFromStorage() {
   // Prefer the legacy key (array) but accept new object shape if present and migrate back
   const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(ALT_KEY);
-  if (!raw) {
+if (!raw) {
+    // If no data exists → show default recipes, but DO NOT save to localStorage
+    // This ensures every new user sees starter recipes
     recipes = [starterRecipe, starterMaggi];
-    saveRecipesToStorage();
     return;
-  }
+}
+
   try {
     const parsed = JSON.parse(raw);
     // newer shape: { recipes: [...] }
