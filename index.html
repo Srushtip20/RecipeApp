@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Recipe Manager</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Recipe Manager</h1>
+    <div class="controls">
+      <label class="search">
+        <i class="fa fa-search icon" aria-hidden="true"></i>
+        <input id="searchInput" type="search" placeholder="Search by title..." />
+      </label>
+      <label class="select-wrap">
+        <i class="fa fa-filter icon" aria-hidden="true"></i>
+        <select id="difficultyFilter">
+        <option value="All">All</option> 
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+        </select>
+      </label>
+      <button id="addBtn" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add Recipe</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="categories">
+      <div class="category-box">
+        <h2>South Indian</h2>
+        <div id="southList" class="grid"></div>
+      </div>
+      <div class="category-box">
+        <h2>North Indian</h2>
+        <div id="northList" class="grid"></div>
+      </div>
+      <div class="category-box">
+        <h2>Western India</h2>
+        <div id="westernList" class="grid"></div>
+      </div>
+      <div class="category-box">
+        <h2>Noodles</h2>
+        <div id="noodlesList" class="grid"></div>
+      </div>
+    </section>
+    <section id="list" class="grid hidden" aria-hidden="true"></section>
+  </main>
+
+  <!-- Detail / Edit Modal -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button class="close" id="closeModal" aria-label="Close"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+      <div id="detailView" class="hidden">
+        <h2 id="detailTitle"></h2>
+        <img id="detailImg" alt="" class="detail-img hidden"/>
+        <p id="detailDesc"></p>
+        <ul id="detailMeta" class="meta"></ul>
+        <h3>Ingredients</h3>
+        <ol id="detailIngredients"></ol>
+        <h3>Steps</h3>
+        <ol id="detailSteps"></ol>
+        <div class="modal-actions">
+          <button id="editFromDetail"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button>
+          <button id="deleteFromDetail" class="danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+        </div>
+      </div>
+
+      <form id="recipeForm" class="hidden">
+        <h2 id="formTitle">Add Recipe</h2>
+        <input type="hidden" id="recipeId" />
+        <label>Title <input id="title" required /></label>
+        <label>Description <textarea id="description" rows="2"></textarea></label>
+        <label>Image URL <input id="image" placeholder="optional image url" /></label>
+          <label>Category
+            <select id="category" required>
+                <option value="South Indian">South Indian</option>
+                <option value="North Indian">North Indian</option>
+                <option value="Western India">Western India</option>
+                <option value="Noodles">Noodles</option>
+            </select>
+          </label>
+        <label>Ingredients (one per line) <textarea id="ingredients" rows="4" required></textarea></label>
+        <label>Steps (one per line) <textarea id="steps" rows="4" required></textarea></label>
+        <div class="row">
+          <label>Prep Time (mins) <input id="prepTime" type="number" min="1" required /></label>
+          <label>Difficulty
+            <select id="difficulty" required>
+              <option value="">Select</option>
+              <option>Easy</option>
+              <option>Medium</option>
+              <option>Hard</option>
+            </select>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" id="saveBtn">Save</button>
+          <button type="button" id="cancelBtn" class="muted">Cancel</button>
+        </div>
+        <div id="formError" class="error hidden"></div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <small>Uses browser <code>localStorage</code>. All data stored locally.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
